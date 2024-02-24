@@ -13,6 +13,7 @@ const initialState = {
             priority: 'high',
         }
     ],
+    userTasks: [],
 }
 
 const tasksSlice = createSlice({
@@ -35,6 +36,9 @@ const tasksSlice = createSlice({
             const target = state.tasks.find(task=> task.id === payload.id)
             target.status = payload.status
         },
+        userTasks: (state, {payload})=>{
+            state.userTasks = state.tasks.filter(task=> task.assignedTo === payload)
+        }
     },
 })
 
